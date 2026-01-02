@@ -6,8 +6,9 @@ Script de prueba para verificar el funcionamiento del generador
 from discord_travel_tips import DiscordTravelTipGenerator
 import json
 
-# Webhook proporcionado
-WEBHOOK_URL = "https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC"
+# Webhook proporcionado - Publicará en el hilo: 🇪🇸 Bilbao
+THREAD_ID = "1393993178302120039"
+WEBHOOK_URL = f"https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC?thread_id={THREAD_ID}"
 
 print("🧪 Prueba del Generador de Tips de Discord\n")
 print("="*60)

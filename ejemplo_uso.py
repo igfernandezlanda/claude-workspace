@@ -6,8 +6,9 @@ Ejemplo de uso programático del generador de tips de Discord
 from discord_travel_tips import DiscordTravelTipGenerator
 import os
 
-# Configuración
-WEBHOOK_URL = "https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC"
+# Configuración - Publicará en el hilo: 🇪🇸 Bilbao
+THREAD_ID = "1393993178302120039"
+WEBHOOK_URL = f"https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC?thread_id={THREAD_ID}"
 
 def ejemplo_restaurante():
     """Ejemplo: Publicar tip de un restaurante"""

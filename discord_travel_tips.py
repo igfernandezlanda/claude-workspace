@@ -400,7 +400,9 @@ class DiscordTravelTipGenerator:
 def main():
     """Función principal"""
     # Webhook de Discord proporcionado
-    WEBHOOK_URL = "https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC"
+    # Publicará en el hilo: 🇪🇸 Bilbao
+    THREAD_ID = "1393993178302120039"
+    WEBHOOK_URL = f"https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC?thread_id={THREAD_ID}"
 
     # Inicializar generador
     generator = DiscordTravelTipGenerator(
