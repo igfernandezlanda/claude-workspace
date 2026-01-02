@@ -2,6 +2,8 @@
 
 Sistema automatizado para publicar tips de viaje en Discord con búsqueda automática de información y formato estandarizado.
 
+> 🆕 **¿Primera vez con Python o GitHub?** → Lee la [Guía para Principiantes](GUIA_PRINCIPIANTES.md) con instrucciones paso a paso.
+
 ## 🚀 Características
 
 - ✅ **Búsqueda automática** de información (Google Places API)
