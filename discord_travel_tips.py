@@ -282,7 +282,9 @@ class DiscordTravelTipGenerator:
 
         content = '\n'.join(lines)
 
+        # Para hilos de foro, usar tanto content como embeds
         return {
+            'content': content,  # Contenido como texto plano
             'embeds': [{
                 'description': content,
                 'color': config['color']
