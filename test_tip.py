@@ -7,14 +7,14 @@ from discord_travel_tips import DiscordTravelTipGenerator
 import json
 
 # Webhook proporcionado - Publicará en el hilo: 🇪🇸 Bilbao
+WEBHOOK_URL = "https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC"
 THREAD_ID = "1393993178302120039"
-WEBHOOK_URL = f"https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC?thread_id={THREAD_ID}"
 
 print("🧪 Prueba del Generador de Tips de Discord\n")
 print("="*60)
 
 # Inicializar generador
-generator = DiscordTravelTipGenerator(webhook_url=WEBHOOK_URL)
+generator = DiscordTravelTipGenerator(webhook_url=WEBHOOK_URL, thread_id=THREAD_ID)
 
 # Crear un tip de ejemplo
 print("\n📝 Generando tip de ejemplo...")

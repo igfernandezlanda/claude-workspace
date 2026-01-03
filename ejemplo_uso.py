@@ -7,14 +7,14 @@ from discord_travel_tips import DiscordTravelTipGenerator
 import os
 
 # Configuración - Publicará en el hilo: 🇪🇸 Bilbao
+WEBHOOK_URL = "https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC"
 THREAD_ID = "1393993178302120039"
-WEBHOOK_URL = f"https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC?thread_id={THREAD_ID}"
 
 def ejemplo_restaurante():
     """Ejemplo: Publicar tip de un restaurante"""
     print("📍 Ejemplo: Restaurante en Madrid\n")
 
-    generator = DiscordTravelTipGenerator(webhook_url=WEBHOOK_URL)
+    generator = DiscordTravelTipGenerator(webhook_url=WEBHOOK_URL, thread_id=THREAD_ID)
 
     tip_data = generator.generate_tip(
         city="Madrid",
@@ -57,7 +57,8 @@ def ejemplo_cafe_con_busqueda():
 
     generator = DiscordTravelTipGenerator(
         webhook_url=WEBHOOK_URL,
-        google_api_key=api_key
+        google_api_key=api_key,
+        thread_id=THREAD_ID
     )
 
     tip_data = generator.generate_tip(
@@ -81,7 +82,7 @@ def ejemplo_museo():
     """Ejemplo: Museo"""
     print("\n🏛️ Ejemplo: Museo\n")
 
-    generator = DiscordTravelTipGenerator(webhook_url=WEBHOOK_URL)
+    generator = DiscordTravelTipGenerator(webhook_url=WEBHOOK_URL, thread_id=THREAD_ID)
 
     tip_data = generator.generate_tip(
         city="Madrid",
@@ -108,7 +109,7 @@ def ejemplo_batch_tips():
     """Ejemplo: Publicar múltiples tips de una vez"""
     print("\n🔄 Ejemplo: Publicación en lote\n")
 
-    generator = DiscordTravelTipGenerator(webhook_url=WEBHOOK_URL)
+    generator = DiscordTravelTipGenerator(webhook_url=WEBHOOK_URL, thread_id=THREAD_ID)
 
     # Lista de tips para publicar
     tips = [

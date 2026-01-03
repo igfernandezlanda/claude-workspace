@@ -49,15 +49,17 @@ class DiscordTravelTipGenerator:
         }
     }
 
-    def __init__(self, webhook_url: str, google_api_key: Optional[str] = None):
+    def __init__(self, webhook_url: str, google_api_key: Optional[str] = None, thread_id: Optional[str] = None):
         """
         Inicializa el generador
 
         Args:
             webhook_url: URL del webhook de Discord
             google_api_key: API key de Google Places (opcional)
+            thread_id: ID del hilo de Discord (opcional, para canales de foro)
         """
         self.webhook_url = webhook_url
+        self.thread_id = thread_id
         self.google_api_key = google_api_key or os.getenv('GOOGLE_PLACES_API_KEY')
 
     def get_stars(self, rating: float) -> str:
@@ -298,8 +300,20 @@ class DiscordTravelTipGenerator:
             True si se publicó correctamente, False en caso contrario
         """
         try:
+            # Construir URL con thread_id si existe
+            url = self.webhook_url
+            if self.thread_id:
+                # Asegurarse de que el thread_id esté en la URL
+                if '?' in url:
+                    # Ya hay parámetros, agregar con &
+                    if 'thread_id=' not in url:
+                        url += f"&thread_id={self.thread_id}"
+                else:
+                    # No hay parámetros, agregar con ?
+                    url += f"?thread_id={self.thread_id}"
+
             response = requests.post(
-                self.webhook_url,
+                url,
                 json=tip_data,
                 headers={'Content-Type': 'application/json'}
             )
@@ -309,7 +323,7 @@ class DiscordTravelTipGenerator:
 
         except requests.exceptions.RequestException as e:
             print(f"❌ Error al publicar en Discord: {e}")
-            if hasattr(e.response, 'text'):
+            if hasattr(e, 'response') and hasattr(e.response, 'text'):
                 print(f"Respuesta: {e.response.text}")
             return False
 
@@ -401,13 +415,14 @@ def main():
     """Función principal"""
     # Webhook de Discord proporcionado
     # Publicará en el hilo: 🇪🇸 Bilbao
+    WEBHOOK_URL = "https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC"
     THREAD_ID = "1393993178302120039"
-    WEBHOOK_URL = f"https://discord.com/api/webhooks/1456771590728585266/rFb-reKNtE874lAjsWZ3P6cShzuOYYLX2XbqEPnAqhVtcsPqi5Q-iNelJb1uG9yQ8KTC?thread_id={THREAD_ID}"
 
     # Inicializar generador
     generator = DiscordTravelTipGenerator(
         webhook_url=WEBHOOK_URL,
-        google_api_key=os.getenv('GOOGLE_PLACES_API_KEY')
+        google_api_key=os.getenv('GOOGLE_PLACES_API_KEY'),
+        thread_id=THREAD_ID
     )
 
     # Verificar si hay API key configurada
